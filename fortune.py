@@ -12,7 +12,7 @@ import re
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = "NDU4NzgzNDg5MDIyNDkyNjc0.DgtPwA.jt5N_jU-uDjzz7UW_vHk7NI0R5w"  # Get at discordapp.com/developers/applications/me
+TOKEN = "<TOKEN>"  # Get at discordapp.com/developers/applications/me
 
 # client
 client = Bot(command_prefix=BOT_PREFIX)
