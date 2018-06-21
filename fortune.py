@@ -9,17 +9,16 @@ import discord
 import requests
 import datetime as dt
 import re
+import json
 
 # general shit and discord token
 BOT_PREFIX = ("?")
 TOKEN = "<TOKEN>"  # Get at discordapp.com/developers/applications/me
 
-# client
+# client/startup
 client = Bot(command_prefix=BOT_PREFIX)
-
-# self
-def __init__(self):
-    self.client = discord.Client()
+user = '<USER>'
+key = '<KEY>'
 
 # clientside stuff. tells me what the bot's up to behind the scenes.
 # like what servers he's in, cos i don't want no strangers using him yet
@@ -33,25 +32,17 @@ async def on_ready():
     print("Current Servers:")
     for server in client.guilds:
         print(server.name)
+    print("Starting...")
     print("----------")
 
+#implementation of Frost -> https://github.com/jagrosh/FrostCleverbot/blob/master/frost.py
 @client.event
 async def on_message(message):
-    if message.content == 'Hello' or message.content == 'hello':
-        channel = message.channel
-        await channel.send('Hi {}!'.format(message.author.mention))
-    if message.content == 'Yo' or message.content == "yo":
-        channel = message.channel
-        await channel.send('What\'s up, {}?'.format(message.author.mention))
-    if message.content == 'Hi' or message.content == 'hi':
-        channel = message.channel
-        await channel.send('Hi there, {}! :smile:'.format(message.author.mention))
-    if message.content == 'Hey' or message.content == 'hey':
-        channel = message.channel
-        await channel.send('Hi, {}'.format(message.author.mention))
-    if 'the bot' in message.content:
-        channel = message.channel
-        await channel.send('I know you\'re talking about me, {}'.format(message.author.mention))
+    if not message.author.bot and (message.guild == None or client.user in message.mentions):
+        txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
+        r = json.loads(requests.post('https://cleverbot.io/1.0/ask', json={'user':user, 'key':key,'nick':'fortune','text':txt}).text)
+        if r['status'] == 'success':
+            await message.channel.send(r['response'])
     await client.process_commands(message)
 
 # command fortune: pick a random fortune from the 'warhammer' binary
@@ -162,6 +153,7 @@ client.remove_command('help')
 @client.command()
 async def help(ctx):
     embed = discord.Embed(title="Truth Servitor", description = "Speaks only the truth. Accepted intonations are:", color=0x00cc99)
+    embed.add_field(name="@Fortune"), value="Mention the Truth Servitor directly to talk to him.", inline=False)
     embed.add_field(name="?fortune | wf", value="Gives daily wisdom.", inline=False)
     embed.add_field(name="?exterminatus | exterm | ex", value="Declares exterminatus.", inline=False)
     embed.add_field(name="?heresy <NAME>", value="Declares a member a heretic.", inline=False)
@@ -178,4 +170,5 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 client.loop.create_task(on_ready())
+requests.post('https://cleverbot.io/1.0/create', json={'user':user, 'key':key, 'nick':'fortune'})
 client.run(TOKEN)
