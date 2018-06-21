@@ -8,3 +8,8 @@ discord bot - python 3
 * datetime
 * re
 * json
+* os
+* pkg_resources
+* aiml (use `pip install python-aiml` for python 3, not just `pip install aiml` (that's for python 2))
+
+keep the bot in the "aiml" directory
