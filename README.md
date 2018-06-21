@@ -7,3 +7,4 @@ discord bot - python 3
 * requests
 * datetime
 * re
+* json
