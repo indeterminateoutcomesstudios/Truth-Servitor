@@ -17,7 +17,7 @@ import aiml
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = "<TOKEN>"  # Get at discordapp.com/developers/applications/me
+TOKEN = "<TOKEN GOES HERE>"  # Get at discordapp.com/developers/applications/me
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
@@ -36,8 +36,6 @@ async def on_ready():
     else:
         k.bootstrap(learnFiles = "std-startup.xml", commands = "load aiml b")
         k.saveBrain("bot_brain.brn")
-    # k.learn("std-startup.xml")
-    # k.respond("load aiml b")
     print("Logging in...")
     print("Username: " + str(client.user.name))
     print("Client ID: " + str(client.user.id))
