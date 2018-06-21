@@ -17,12 +17,10 @@ import aiml
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = "NDU4NzgzNDg5MDIyNDkyNjc0.DgxyYw.xn9q2Krf-gm2jDKWQRkr4OmyEwc"  # Get at discordapp.com/developers/applications/me
+TOKEN = "<TOKEN>"  # Get at discordapp.com/developers/applications/me
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
-user = 'g2qTdVXk3IAW4JOu'
-key = 'y3lisSaFLdnevGuUtvlX05TlDUKXRf5u'
 k = aiml.Kernel()
 
 # self.client=Bot(command_prefix=BOT_PREFIX)
