@@ -30,7 +30,29 @@ async def on_ready():
     print("Username: " + str(client.user.name))
     print("Client ID: " + str(client.user.id))
     print(dt.datetime.now().time())
+    print("Current Servers:")
+    for server in client.guilds:
+        print(server.name)
     print("----------")
+
+@client.event
+async def on_message(message):
+    if message.content == 'Hello' or message.content == 'hello':
+        channel = message.channel
+        await channel.send('Hi {}!'.format(message.author.mention))
+    if message.content == 'Yo' or message.content == "yo":
+        channel = message.channel
+        await channel.send('What\'s up, {}?'.format(message.author.mention))
+    if message.content == 'Hi' or message.content == 'hi':
+        channel = message.channel
+        await channel.send('Hi there, {}! :smile:'.format(message.author.mention))
+    if message.content == 'Hey' or message.content == 'hey':
+        channel = message.channel
+        await channel.send('Hi, {}'.format(message.author.mention))
+    if 'the bot' in message.content:
+        channel = message.channel
+        await channel.send('I know you\'re talking about me, {}'.format(message.author.mention))
+    await client.process_commands(message)
 
 # command fortune: pick a random fortune from the 'warhammer' binary
 @client.command(aliases=["wf"])
