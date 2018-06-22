@@ -1,10 +1,6 @@
-# Truth Servitor/"Fortune" - memey warhammer discord bot - python 3 & aiml 
+# Truth Servitor/"Fortune" - memey warhammer discord bot - python 3
 
 Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord chatbot.
-
-References:
-
-[Dev Dungeon's *Chatty Cathy* Bot](https://github.com/DevDungeon/ChattyCathy)
 
 ### **Required Libraries:**
 * random
@@ -16,17 +12,19 @@ References:
 * json
 * os
 * pkg_resources
-* aiml (use `pip install python-aiml` for python 3, not just `pip install aiml` (that's for python 2))
+* Chatterbot ([get it here](https://github.com/gunthercox/ChatterBot))
+
 
 ### Usage
 
-Keep the bot (fortune.py) in the "aiml" directory. Replace the `<TOKEN GOES HERE>` on line 20 with your bot token.
+Replace the `<TOKEN GOES HERE>` on line 20 with your bot token.
 Bot tokens may be acquired from [here](discordapp.com/developers/applications/me) after creating a bot account.
 
 Lauch from within directory: `python fortune.py`.
-First launch will generate a `.brn` file from the included AIML modules. This file is the "brain" and helps load the bot faster later.
 
-If custom AIML files are added, keep them in the Custom directory. When new AIML files are added, or when current AIML files are edited, the `.brn` file must be deleted and re-generated. This may be fixed later to do it with a command.
+On first launch, a Sqlite file called `db.sqlite3` will be generated. This is the bot's "brain." It will record any and all conversation held in Discord.
+
+**You can disable Fortune's constant spam of "I'm sorry, I don't understand" while it is learning by commenting out line 66.**
 
 #### Current Functions
 
@@ -47,4 +45,7 @@ If custom AIML files are added, keep them in the Custom directory. When new AIML
 * ?cpphelp or ?cref or ?ch : Search CPPReference for a string.
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string.
 
+### Features Coming Soon
+* Wolfram Alpha search 
+* More fortunes
 
