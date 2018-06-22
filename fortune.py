@@ -14,7 +14,7 @@ import json
 import os
 import pkg_resources
 from chatterbot import ChatBot
-# from chatterbot.trainers import ChatterBotCorpusTrainer
+#from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # general shit and discord token
 BOT_PREFIX = ("?")
@@ -36,8 +36,8 @@ fortunebot = ChatBot('Fortune',
                     )
 
 # set the trainer
-# fortunebot.set_trainer(ChatterBotCorpusTrainer)
-# fortunebot.train('chatterbot.corpus.english')
+#fortunebot.set_trainer(ChatterBotCorpusTrainer)
+#fortunebot.train('chatterbot.corpus.english')
 
 # clientside stuff. tells me what the bot's up to behind the scenes.
 # like what servers he's in, cos i don't want no strangers using him yet
@@ -58,12 +58,12 @@ async def on_ready():
 ## implementation of ChatterBot machine-learning chatbot.
 @client.event
 async def on_message(message):
-    #if not message.author.bot and (message.guild == None or client.user in message.mentions):
-    if message.author == client.user:
-        return
-    txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
-    response=fortunebot.get_response(txt)
-    await message.channel.send(response)
+    if not message.author.bot and (message.guild == None or client.user in message.mentions):
+    #if message.author == client.user:
+    #    return
+        txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
+        response=fortunebot.get_response(txt)
+        await message.channel.send(response)
     await client.process_commands(message)
 
 # command fortune: pick a random fortune from the 'warhammer' binary
@@ -163,10 +163,12 @@ async def declareHeresy(ctx, a: discord.Member):
 # command info: tells you about this bot
 @client.command()
 async def info(ctx):
-    embed = discord.Embed(title="Truth Servitor", description="Speaks only the truth.", color=0x00cc99)
-    embed.add_field(name="Version", value="1.0")
+    embed = discord.Embed(title="Truth Servitor \"Fortune\"", description="Speaks only the truth.", color=0x00cc99)
+    embed.add_field(name="Version", value="3.0")
     embed.add_field(name="Author", value="Esherymack | Madison Tibbett")
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
+    embed.add_field(name="Github", value="https://github.com/Esherymack/Truth-Servitor")
+    embed.add_field(name="Changes", value="-Fortune now talks through ChatterBot.", inline=False)
     await ctx.send(embed=embed)
 
 # overwrite the help command with something pretty
