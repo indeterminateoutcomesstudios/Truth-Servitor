@@ -23,8 +23,6 @@ TOKEN = "<TOKEN GOES HERE>"  # Get at discordapp.com/developers/applications/me
 client = Bot(command_prefix=BOT_PREFIX)
 k = aiml.Kernel()
 
-# self.client=Bot(command_prefix=BOT_PREFIX)
-
 # clientside stuff. tells me what the bot's up to behind the scenes.
 # like what servers he's in, cos i don't want no strangers using him yet
 @client.event
@@ -159,6 +157,12 @@ async def info(ctx):
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
     await ctx.send(embed=embed)
 
+# command learn: Teach the bot something to recall later.
+@client.command()
+async def learn(ctx, b):
+    await ctx.send("I will take note of this for later: " + b + " . Thanks, {}".format(ctx.author.mention))
+
+
 # overwrite the help command with something pretty
 client.remove_command('help')
 @client.command()
@@ -181,7 +185,5 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 client.loop.create_task(on_ready())
-
-requests.post('https://cleverbot.io/1.0/create', json={'user':user, 'key':key, 'nick':'fortune'})
 
 client.run(TOKEN)
