@@ -18,7 +18,7 @@ from chatterbot import ChatBot
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = "NDU4NzgzNDg5MDIyNDkyNjc0.Dg3zfQ.OstscSVyDoH-T2kW13WilI8aPpI"  # Get at discordapp.com/developers/applications/me
+TOKEN = "<TOKEN GOES HERE>"  # Get at discordapp.com/developers/applications/me
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
