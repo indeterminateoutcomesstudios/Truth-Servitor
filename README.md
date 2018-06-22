@@ -38,7 +38,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?coinflip : Tosses a coin.
 * ?gt or ?gtime : Gets current time. Based on host's system time.
 * ?info : Gives info regarding development.
-* ?help : Displays all functions.lo
+* ?help : Displays all functions.
 
 **Currently Under Construction: These functions may change for convenience later on to give the first result of a search, not the search page itself.**
 * ?pythonhelp or ?pyhelp or ?ph : Search the Python Documetation for a given string.
