@@ -1,6 +1,8 @@
 # Truth Servitor/"Fortune" - memey warhammer discord bot - python 3 & aiml 
 
 Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord chatbot.
+References:
+[Dev Dungeon's *Chatty Cathy* Bot](https://github.com/DevDungeon/ChattyCathy)
 
 ### **Required Libraries:**
 * random
