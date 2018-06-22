@@ -18,7 +18,7 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 ### Usage
 
 Replace the `<TOKEN GOES HERE>` on line 20 with your bot token.
-Bot tokens may be acquired from [here](discordapp.com/developers/applications/me) after creating a bot account.
+Bot tokens may be acquired from [here](discordapp.com/developers/applications/me) after creating a Discord application.
 
 Lauch from within directory: `python fortune.py`.
 
