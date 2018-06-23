@@ -4,14 +4,10 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 
 ### **Required Libraries:**
 * random
-* asyncio
 * discord ([use Discordpy rewrite](https://github.com/Rapptz/discord.py/tree/rewrite))
 * requests
 * datetime
 * re
-* json
-* os
-* pkg_resources
 * Chatterbot ([get it here](https://github.com/gunthercox/ChatterBot))
 
 
