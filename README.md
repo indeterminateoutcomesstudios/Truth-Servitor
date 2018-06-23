@@ -28,7 +28,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 
 #### Current Functions
 
-* ~~Mentioning Fortune in chat will directly speak to him~~. *Currently will respond to any message sent in Discord to fascilitate learning.* This functions through Chatterbot.
+* ~~Mentioning Fortune in chat will directly speak to him~~. *Currently will respond to any message sent in Discord to fascilitate learning. You can change this by uncommenting lines 62 and 63, and commenting line 61. After that, fix the indentations of lines 64-66 - otherwise, it won't work.* This functions through Chatterbot.
 * ?fortune or ?wf : Picks a random Warhammer quote from the included "warhammer" binary file. This is very similar to Unix `fortune`
 * ?exterminatus or ?exterm or ?ex : Declares exterminatus. Edit this text to fit your server's needs.
 * ?heresy <NAME> : Case-sensitive. Declares a member a heretic for all to see.
