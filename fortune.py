@@ -3,16 +3,11 @@
 #Created by Madison Tibbett
 
 import random
-import asyncio
 from discord.ext.commands import Bot
-from discord.ext import commands
 import discord
 import requests
 import datetime as dt
 import re
-import json
-import os
-import pkg_resources
 from chatterbot import ChatBot
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
