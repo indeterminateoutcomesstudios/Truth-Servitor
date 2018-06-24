@@ -13,7 +13,7 @@ from chatterbot import ChatBot
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = "<TOKEN GOES HERE>"  # Get at discordapp.com/developers/applications/me
+TOKEN = "<BOT TOKEN HERE>"  # Get at discordapp.com/developers/applications/me
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
@@ -53,12 +53,10 @@ async def on_ready():
 ## implementation of ChatterBot machine-learning chatbot.
 @client.event
 async def on_message(message):
-    #if not message.author.bot and (message.guild == None or client.user in message.mentions):
-    if message.author == client.user:
-        return
     txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
     response=fortunebot.get_response(txt)
-    await message.channel.send(response)
+    if not message.author.bot and (message.guild == None or client.user in message.mentions):
+        await message.channel.send(response)
     await client.process_commands(message)
 
 # command fortune: pick a random fortune from the 'warhammer' binary
