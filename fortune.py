@@ -2,18 +2,19 @@
 #Changes - Now runs off of Chatterbot instead of AIML
 #Created by Madison Tibbett
 
-import random
 from discord.ext.commands import Bot
 import discord
 import requests
 import datetime as dt
 import re
+import token
+import fortune_io
 from chatterbot import ChatBot
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = "<BOT TOKEN HERE>"  # Get at discordapp.com/developers/applications/me
+TOKEN = get_token()  # Get at discordapp.com/developers/applications/me
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
@@ -33,6 +34,12 @@ fortunebot = ChatBot('Fortune',
 # set the trainer
 #fortunebot.set_trainer(ChatterBotCorpusTrainer)
 #fortunebot.train('chatterbot.corpus.english')
+
+fortunes = fortune_io.get_fortunes()
+
+def get_token():
+    with open('./token') as tf:
+        return tf.read().strip()
 
 # clientside stuff. tells me what the bot's up to behind the scenes.
 # like what servers he's in, cos i don't want no strangers using him yet
@@ -54,22 +61,34 @@ async def on_ready():
 @client.event
 async def on_message(message):
     txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
-    response=fortunebot.get_response(txt)
     if not message.author.bot and (message.guild == None or client.user in message.mentions):
+        response=fortunebot.get_response(txt)
         await message.channel.send(response)
-    await client.process_commands(message)
 
-# command fortune: pick a random fortune from the 'warhammer' binary
+# command fortune: pick a random fortune from the specified file in the fortunes dir, or default to
+# warhammer if none specified
 @client.command(aliases=["wf"])
 async def fortune(ctx):
-    # crack that sucker open and pull out all the good stuff
-    lines = open('warhammer', encoding='utf-8').readlines()
-    # ...and prune it cos it's ugly...
-    fortunes = list(map(lambda t: t.strip(''), lines))
+    messagetext = ctx.message.content
+    split = messagetext.split(' ')
+    if len(split) > 1:
+        messagetext = split[1]
+    # default to warhammer fortunes if no file specified
+    else:
+        messagetext = 'warhammer'
+
     # pick a random bit of wisdom from the file
-    wf2 = random.choice(fortunes)
-    # spit it out
-    await ctx.send(wf2)
+    fortune = fortune_io.get_fortune(messagetext)
+
+    # file was valid
+    if fortune:
+        # spit it out
+        await ctx.send(fortune)
+    # invalid file
+    else:
+        await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ REDACTED...")
+        
+
 
 # command exterminatus: conduct exterminatus
 @client.command(aliases=["exterm","ex"])
@@ -170,7 +189,7 @@ client.remove_command('help')
 async def help(ctx):
     embed = discord.Embed(title="Truth Servitor", description = "Speaks only the truth. Accepted intonations are:", color=0x00cc99)
     embed.add_field(name="@Fortune", value="Mention the Truth Servitor directly to talk to him.", inline=False)
-    embed.add_field(name="?fortune | wf", value="Gives daily wisdom.", inline=False)
+    embed.add_field(name="?fortune | wf <FILE>", value="Gives daily wisdom.", inline=False)
     embed.add_field(name="?exterminatus | exterm | ex", value="Declares exterminatus.", inline=False)
     embed.add_field(name="?heresy <NAME>", value="Declares a member a heretic.", inline=False)
     embed.add_field(name="?shutdown", value="Shuts the bot down.", inline=False)
