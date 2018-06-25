@@ -17,10 +17,6 @@ import fortune_io
 
 # general shit and discord token
 BOT_PREFIX = ("?")
-#def get_token():
-#    with open('./token') as tf:
-#        return tf.read().strip()
-# TOKEN = get_token()  # Get at discordapp.com/developers/applications/me
 
 with open('./token') as tf:
     TOKEN = tf.read().strip()
