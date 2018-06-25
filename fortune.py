@@ -1,20 +1,29 @@
-#Truth Servitor "Fortune" version 3.0
-#Changes - Now runs off of Chatterbot instead of AIML
+#Truth Servitor "Fortune" version 3.1
+#Changes - Customizable fortune directory 
 #Created by Madison Tibbett
 
+# library imports
 from discord.ext.commands import Bot
 import discord
 import requests
 import datetime as dt
 import re
-import token
-import fortune_io
 from chatterbot import ChatBot
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
+# external file imports
+import token
+import fortune_io
+
 # general shit and discord token
 BOT_PREFIX = ("?")
-TOKEN = get_token()  # Get at discordapp.com/developers/applications/me
+#def get_token():
+#    with open('./token') as tf:
+#        return tf.read().strip()
+# TOKEN = get_token()  # Get at discordapp.com/developers/applications/me
+
+with open('./token') as tf:
+    TOKEN = tf.read().strip()
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
@@ -34,12 +43,6 @@ fortunebot = ChatBot('Fortune',
 # set the trainer
 #fortunebot.set_trainer(ChatterBotCorpusTrainer)
 #fortunebot.train('chatterbot.corpus.english')
-
-fortunes = fortune_io.get_fortunes()
-
-def get_token():
-    with open('./token') as tf:
-        return tf.read().strip()
 
 # clientside stuff. tells me what the bot's up to behind the scenes.
 # like what servers he's in, cos i don't want no strangers using him yet
@@ -64,6 +67,7 @@ async def on_message(message):
     if not message.author.bot and (message.guild == None or client.user in message.mentions):
         response=fortunebot.get_response(txt)
         await message.channel.send(response)
+    await client.process_commands(message)
 
 # command fortune: pick a random fortune from the specified file in the fortunes dir, or default to
 # warhammer if none specified
@@ -87,7 +91,7 @@ async def fortune(ctx):
     # invalid file
     else:
         await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ REDACTED...")
-        
+
 
 
 # command exterminatus: conduct exterminatus
@@ -176,11 +180,11 @@ async def declareHeresy(ctx, a: discord.Member):
 @client.command()
 async def info(ctx):
     embed = discord.Embed(title="Truth Servitor \"Fortune\"", description="Speaks only the truth.", color=0x00cc99)
-    embed.add_field(name="Version", value="3.0")
+    embed.add_field(name="Version", value="3.1")
     embed.add_field(name="Author", value="Esherymack | Madison Tibbett")
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
     embed.add_field(name="Github", value="https://github.com/Esherymack/Truth-Servitor")
-    embed.add_field(name="Changes", value="-Fortune now talks through ChatterBot.", inline=False)
+    embed.add_field(name="Changes", value="-Fortune's fortune library can now be expanded and customized.", inline=False)
     await ctx.send(embed=embed)
 
 # overwrite the help command with something pretty
