@@ -12,13 +12,14 @@ import datetime as dt
 import re
 import random
 from chatterbot import ChatBot
+# OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 16.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # external file imports
 import token
 import fortune_io
 
-# general shit and discord token
+# general : set bot prefix and retrieve discord token
 BOT_PREFIX = ("?")
 
 with open('./token') as tf:
@@ -40,11 +41,12 @@ fortunebot = ChatBot('Fortune',
                     )
 
 # set the trainer
+# OPTIONAL : Uncomment 44 and 45 to train Fortune on a basic corpus.
 #fortunebot.set_trainer(ChatterBotCorpusTrainer)
 #fortunebot.train('chatterbot.corpus.english')
 
-# clientside stuff. tells me what the bot's up to behind the scenes.
-# like what servers he's in, cos i don't want no strangers using him yet
+# clientside stuff. tells what the bot's up to behind the scenes.
+# This lists Fortune's username, client ID, current time, current servers in terminal
 @client.event
 async def on_ready():
     await client.wait_until_ready()
@@ -62,10 +64,16 @@ async def on_ready():
 ## implementation of ChatterBot machine-learning chatbot.
 @client.event
 async def on_message(message):
+    # This line prunes out the mention to the bot
     txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
+    # This line prevents the bot from replying to itself
     if not message.author.bot and (message.guild == None or client.user in message.mentions):
+        # Retrieve the response from the database & send it off
         response=fortunebot.get_response(txt)
         await message.channel.send(response)
+    # IMPORTANT : The below line is not a duplicate! This line helps Fortune exit the
+    #             on_message function in order to parse commands. If you move it or
+    #             delete it, the client commands may not work!
     await client.process_commands(message)
 
 # command fortune: pick a random fortune from the specified file in the fortunes dir, or default to
@@ -119,9 +127,13 @@ async def status(ctx):
 @client.command()
 async def joke(ctx):
     makeJoke = requests.get('http://api.icndb.com/jokes/random?')
+    # status code 200 : response sucessful
     if makeJoke.status_code==200:
         makeJoke = makeJoke.json()['value']['joke']
         await ctx.send(makeJoke)
+    else:
+        # if the status code is anything other than 200 the request failed
+        await ctx.send("Sorry, I can't seem to connect right now!")
 
 # command pythonhelp: searches the python docs for help
 @client.command(aliases=["pyhelp","ph"])
@@ -132,7 +144,7 @@ async def pythonhelp(ctx):
         messagetext = split[1]
         # search the site
         # the python docs site uses some javascript stuff to dynamically load search results
-        # as a result BeautifulSoup threw a royal fit
+        # as a result BeautifulSoup threw a royal fit and I can't pin down any appropriate tags
         await ctx.send("The top result for that search is : " + 'https://docs.python.org/3/library/' + messagetext + '.html')
 
 # command cpphelp: searches cppreference for help
@@ -142,14 +154,22 @@ async def cpphelp(ctx):
     split = messagetext.split(' ')
     if len(split) > 1:
         messagetext = split[1]
+        # create the search query
         cpp_search = 'http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' + messagetext
+        # fetch the site
         r = requests.get(cpp_search)
+        # parse the site through BeautifulSoup
         soup = BeautifulSoup(r.content, 'html.parser')
+        # Narrow down to the div class mw-search-result-heading, grab the first <a href="">
         search_result = soup.find('div', attrs={'class' : 'mw-search-result-heading'}).find('a').get('href')
+        # Append the <a href=""> to the appropriate URL
         cpp_result = 'https://en.cppreference.com' + search_result
+        # Return the query
         await ctx.send("The top result for that search is: " + cpp_result)
 
 # command stackoverflowhelp: searches stackoverflow for help
+# This function is more or less the same as the cppreference one
+# see that one's documentation for this one
 @client.command(aliases=["stackh", "sh"])
 async def stackoverflowhelp(ctx):
     messagetext = ctx.message.content
@@ -173,13 +193,15 @@ async def coinflip(ctx):
         await ctx.send("Tails!")
 
 # command time: get the time
+# This returns the host's server time.
 @client.command(aliases=["gtime"])
 async def gt(ctx):
     t = dt.datetime.now().time()
     t = t.strftime('%H:%M:%S')
     await ctx.send("It is currently " + t + ", {}".format(ctx.author.mention))
 
-# utility | command heresy: declare a member a heretic
+# command heresy: declare a member a heretic
+# TODO : Make this both case-insensitive and able to take a nickname 
 @client.command(aliases=["heresy"])
 async def declareHeresy(ctx, a: discord.Member):
     member_name_string = str(a)
