@@ -1,6 +1,6 @@
-#Truth Servitor "Fortune" version 3.2
-#Changes - Added more fortunes
-#        - Updated search functions to grab top result, rather than search page
+#Truth Servitor "Fortune" version 4.0
+#Changes - Refined search functions
+#        - Implemented Wolfram|Alpha and Wikipedia search capability.
 #Created by Madison Tibbett
 
 # library imports
@@ -17,8 +17,7 @@ import wikipedia
 # OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 16.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
-# external file imports
-import token
+# external file import
 import fortune_io
 
 # general : set bot prefix and retrieve discord token
@@ -26,6 +25,10 @@ BOT_PREFIX = ("?")
 
 with open('./token') as tf:
     TOKEN = tf.read().strip()
+
+# retrieve Wolfram|Alpha app ID
+with open('./wolfram_app_id') as wai:
+    appID = wai.read().strip()
 
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
@@ -41,6 +44,9 @@ fortunebot = ChatBot('Fortune',
                     input_adapter="chatterbot.input.VariableInputTypeAdapter",
                     output_adapter="chatterbot.output.OutputAdapter",
                     )
+
+# initialize Fortune as Wolfram|Alpha client
+fortuneclient = wolframalpha.Client(appID)
 
 # set the trainer
 # OPTIONAL : Uncomment 44 and 45 to train Fortune on a basic corpus.
@@ -183,6 +189,9 @@ async def stackoverflowhelp(ctx):
         so_result = 'https://stackoverflow.com/' + search_result
         await ctx.send("The top result for that search is: " + so_result)
 
+# The Wikipedia and Wolfram|Alpha commands are based off of this:
+# https://medium.com/@salisuwy/build-an-ai-assistant-with-wolfram-alpha-and-wikipedia-in-python-d9bc8ac838fe
+
 # command wiki: searches wikipedia
 @client.command()
 async def wiki(ctx, a):
@@ -192,7 +201,7 @@ async def wiki(ctx, a):
     wiki_search_result = wikipedia.search(querytext)
     # if there is no result:
     if not wiki_search_result:
-        print("I apologize, but there does not seem to be any information regarding that.")
+        await ctx.send("I apologize, but there does not seem to be any information regarding that.")
         return
     # search page try block
     try:
@@ -204,10 +213,47 @@ async def wiki(ctx, a):
     wikiTitle = str(page.title.encode('utf-8'))
     wikiSummary = str(page.summary.encode('utf-8'))
     # spit the result out prettily
-    embed = discord.Embed(title = wikiTitle[1:], color=0x00cc99)
-    embed.add_field(name="Summary:", value=wikiSummary[1:])
+    embed = discord.Embed(title = wikiTitle[1:].strip('\''), color=0x00cc99)
+    embed.add_field(name="Summary:", value=wikiSummary[1:]) if len(wikiSummary) < 1020 else embed.add_field(name="Summary:", value=wikiSummary[1:1020] + "...")
     await ctx.send(embed=embed)
-    #await ctx.send(wikiSummary[1:])
+
+# comand wolfram: searches Wolfram|Alpha.
+@client.command(aliases=['wolf', 'wa'])
+async def wolfram(ctx, a):
+    res = fortuneclient.query(a)
+    # in the event that Wolfram cannot resolve the question:
+    if res['@success'] == 'false':
+        await ctx.send("I apologize, but I cannot resolve this query.")
+    # otherwise, Wolfram was able to figure it out.
+    else:
+        result = ''
+        # pod[0] is the question
+        pod0 = res['pod'][0]
+        # pod[1] is the answer with highest confidence
+        pod1 = res['pod'][1]
+        # check if pod1 has primary=true or title=result|definition
+        if(('definition' in pod1['@title'].lower()) or ('result' in pod1['@title'].lower()) or (pod1.get('@primary','false') == 'true')):
+            # grab result
+            result = resolveListOrDict(pod1['subpod'])
+            # spit the result out prettily
+            embed = discord.Embed(title = resolveListOrDict(pod0['subpod']), color=0x00cc99)
+            embed.add_field(name="Wolfram Says: ", value=result)
+            await ctx.send(embed=embed)
+        # otherwise we extract Wolfram's question interpretation and throw it to wikipedia
+        else:
+            question = resolveListOrDict(pod0['subpod'])
+            question = removeBrackets(question)
+            # in order to call a command function, you have to await/invoke it
+            await ctx.invoke(wiki, question)
+
+# supplementary functions to above
+def removeBrackets(variable):
+    return variable.split('(')[0]
+def resolveListOrDict(variable):
+    if isinstance(variable, list):
+        return variable[0]['plaintext']
+    else:
+        return variable['plaintext']
 
 
 # command coinflip: tosses a coin
@@ -264,6 +310,7 @@ async def help(ctx):
     embed.add_field(name="?cpphelp | cref | ch", value="Search cppreference for a string.", inline=False)
     embed.add_field(name="?stackoverflowhelp | stackh | sh", value="Search Stack Overflow for a string.", inline=False)
     embed.add_field(name="?wiki", value="Search Wikipedia", inline=False)
+    embed.add_field(name="?wolfram | wolf | wa", value="Query Wolfram|Alpha.", inline=False)
     embed.add_field(name="?coinflip", value="Toss a coin.", inline=False)
     embed.add_field(name="?gt | gtime", value="Display the time.", inline=False)
     embed.add_field(name="?info", value="Gives info regarding this servitor's development.", inline=False)

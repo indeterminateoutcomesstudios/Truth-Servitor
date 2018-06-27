@@ -2,3 +2,4 @@
 __pycache__/*
 token
 *.sqlite3
+wolfram_app_id

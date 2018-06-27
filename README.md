@@ -19,6 +19,9 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 Place your bot token into an external file called "token."
 Bot tokens may be acquired from [here](https://discordapp.com/developers/applications/me) after creating a Discord application.
 
+Place your Wolfram|Alpha API token into an external file called "wolfram_app_id."
+Wolfram|Alpha API tokens may be acquired from [here](https://account.wolfram.com/auth/sign-in) after creating a Wolfram|Alpha ID and creating a new application.
+
 Lauch from within directory: `python fortune.py`.
 
 On first launch, a Sqlite file called `db.sqlite3` will be generated. This is the bot's "brain." It will record any and all conversation held in Discord.
@@ -40,6 +43,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?cpphelp or ?cref or ?ch : Search cppreference for a string and get the top result.
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
 * ?wiki : Search Wikipedia and get the top result.
+* ?wolfram or ?wolf or ?wa : Query Wolfram|Alpha. If query fails, it gets booted to Wikipedia.
 
 ### Features Coming Soon
 * Wolfram Alpha search
