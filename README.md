@@ -3,7 +3,6 @@
 Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord chatbot.
 
 ### **Required Libraries:**
-* random
 * os
 * discord ([use Discordpy rewrite](https://github.com/Rapptz/discord.py/tree/rewrite))
 * requests
@@ -11,7 +10,7 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * re
 * random
 * Chatterbot ([get it here](https://github.com/gunthercox/ChatterBot))
-
+* Beautiful Soup 4 ([read all about it here](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
 
 ### Usage
 
@@ -35,13 +34,10 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?gt or ?gtime : Gets current time. Based on host's system time.
 * ?info : Gives info regarding development.
 * ?help : Displays all functions.
-
-**Currently Under Construction: These functions may change for convenience later on to give the first result of a search, not the search page itself.**
-* ?pythonhelp or ?pyhelp or ?ph : Search the Python Documetation for a given string.
-* ?cpphelp or ?cref or ?ch : Search CPPReference for a string.
-* ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string.
+* ?pythonhelp or ?pyhelp or ?ph : Search the Python 3 docs for a string.
+* ?cpphelp or ?cref or ?ch : Search cppreference for a string and get the top result.
+* ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
 
 ### Features Coming Soon
 * Wolfram Alpha search
 * Case insensitivity/nicknames for ?heresy command
-* Randomize fortunes further

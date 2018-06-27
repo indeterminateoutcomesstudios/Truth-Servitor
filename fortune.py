@@ -1,11 +1,13 @@
-#Truth Servitor "Fortune" version 3.1
-#Changes - Customizable fortune directory
+#Truth Servitor "Fortune" version 3.2
+#Changes - Added more fortunes
+#        - Updated search functions to grab top result, rather than search page
 #Created by Madison Tibbett
 
 # library imports
 from discord.ext.commands import Bot
 import discord
 import requests
+from bs4 import BeautifulSoup
 import datetime as dt
 import re
 import random
@@ -87,7 +89,7 @@ async def fortune(ctx):
         await ctx.send(fortune)
     # invalid file
     else:
-        await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ REDACTED...")
+        await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ `*REDACTED`*...")
 
 
 
@@ -128,7 +130,10 @@ async def pythonhelp(ctx):
     split = messagetext.split(' ')
     if len(split) > 1:
         messagetext = split[1]
-        await ctx.send('https://docs.python.org/3/search.html?q=' + messagetext)
+        # search the site
+        # the python docs site uses some javascript stuff to dynamically load search results
+        # as a result BeautifulSoup threw a royal fit
+        await ctx.send("The top result for that search is : " + 'https://docs.python.org/3/library/' + messagetext + '.html')
 
 # command cpphelp: searches cppreference for help
 @client.command(aliases=["cref", "ch"])
@@ -137,7 +142,12 @@ async def cpphelp(ctx):
     split = messagetext.split(' ')
     if len(split) > 1:
         messagetext = split[1]
-        await ctx.send('http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' + messagetext)
+        cpp_search = 'http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' + messagetext
+        r = requests.get(cpp_search)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        search_result = soup.find('div', attrs={'class' : 'mw-search-result-heading'}).find('a').get('href')
+        cpp_result = 'https://en.cppreference.com' + search_result
+        await ctx.send("The top result for that search is: " + cpp_result)
 
 # command stackoverflowhelp: searches stackoverflow for help
 @client.command(aliases=["stackh", "sh"])
@@ -146,7 +156,12 @@ async def stackoverflowhelp(ctx):
     split = messagetext.split(' ')
     if len(split) > 1:
         messagetext = split[1]
-        await ctx.send('https://stackoverflow.com/search?q=' + messagetext)
+        so_search = 'https://stackoverflow.com/search?q=' + messagetext
+        r = requests.get(so_search)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        search_result = soup.find('div', attrs={'class' : 'summary'}).find('a', attrs={'class' : 'question-hyperlink'}).get('href')
+        so_result = 'https://stackoverflow.com/' + search_result
+        await ctx.send("The top result for that search is: " + so_result)
 
 # command coinflip: tosses a coin
 @client.command()
@@ -177,7 +192,7 @@ async def declareHeresy(ctx, a: discord.Member):
 @client.command()
 async def info(ctx):
     embed = discord.Embed(title="Truth Servitor \"Fortune\"", description="Speaks only the truth.", color=0x00cc99)
-    embed.add_field(name="Version", value="3.1")
+    embed.add_field(name="Version", value="3.2")
     embed.add_field(name="Author", value="Esherymack | Madison Tibbett")
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
     embed.add_field(name="Github", value="https://github.com/Esherymack/Truth-Servitor")
