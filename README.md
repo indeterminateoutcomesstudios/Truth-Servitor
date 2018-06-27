@@ -24,9 +24,9 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 #### Current Functions
 
 * Mentioning Fortune in chat will directly speak to him. This functions through Chatterbot. The bot will not speak when not mentioned, but will pick up and "learn" all conversation around him.
-* ?fortune or ?wf <FILE>: Picks a fortune from a given file. Defaults to a Warhammer quote from included 'warhammer' binary. This is very similar to Unix `fortune`
+* ?fortune or ?wf FILENAME: Picks a fortune from a given file. Defaults to a Warhammer quote from included 'warhammer' binary. This is very similar to Unix `fortune`
 * ?exterminatus or ?exterm or ?ex : Declares exterminatus. Edit this text to fit your server's needs.
-* ?heresy <NAME> : Case-sensitive. Declares a member a heretic for all to see.
+* ?heresy NAME : Case-sensitive. Declares a member a heretic for all to see. Must use the user's Discord username, not nickname.
 * ?shutdown : Shuts the bot down from within Discord.
 * ?status <string> : Set the in-game status of the bot.
 * ?joke : Tells a Chuck Norris joke. Use at own risk. They're awful.
@@ -42,3 +42,5 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 
 ### Features Coming Soon
 * Wolfram Alpha search
+* Case insensitivity/nicknames for ?heresy command
+* Randomize fortunes further
