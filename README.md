@@ -1,6 +1,6 @@
 # Truth Servitor/"Fortune" - memey warhammer discord bot - python 3
 
-Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord chatbot.
+Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord chatbot. He is written in Python 3.
 
 ### **Required Libraries:**
 * os
@@ -13,6 +13,10 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * Beautiful Soup 4 ([read all about it here](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
 * wolframalpha (`pip install wolframalpha`)
 * wikipedia (`pip install wikipedia`)
+
+### **Other Things You Need:**
+* A Discord bot token
+* A Wolfram|Alpha API token
 
 ### Usage
 
@@ -46,5 +50,4 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?wolfram or ?wolf or ?wa : Query Wolfram|Alpha. If query fails, it gets booted to Wikipedia.
 
 ### Features Coming Soon
-* Wolfram Alpha search
 * Case insensitivity/nicknames for ?heresy command
