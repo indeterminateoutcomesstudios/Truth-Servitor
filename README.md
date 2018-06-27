@@ -11,6 +11,8 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * random
 * Chatterbot ([get it here](https://github.com/gunthercox/ChatterBot))
 * Beautiful Soup 4 ([read all about it here](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
+* wolframalpha (`pip install wolframalpha`)
+* wikipedia (`pip install wikipedia`)
 
 ### Usage
 
@@ -37,6 +39,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?pythonhelp or ?pyhelp or ?ph : Search the Python 3 docs for a string.
 * ?cpphelp or ?cref or ?ch : Search cppreference for a string and get the top result.
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
+* ?wiki : Search Wikipedia and get the top result.
 
 ### Features Coming Soon
 * Wolfram Alpha search

@@ -12,6 +12,8 @@ import datetime as dt
 import re
 import random
 from chatterbot import ChatBot
+import wolframalpha
+import wikipedia
 # OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 16.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
@@ -99,8 +101,6 @@ async def fortune(ctx):
     else:
         await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ `REDACTED`...")
 
-
-
 # command exterminatus: conduct exterminatus
 @client.command(aliases=["exterm","ex"])
 async def exterminatus(ctx):
@@ -183,6 +183,33 @@ async def stackoverflowhelp(ctx):
         so_result = 'https://stackoverflow.com/' + search_result
         await ctx.send("The top result for that search is: " + so_result)
 
+# command wiki: searches wikipedia
+@client.command()
+async def wiki(ctx, a):
+    # grab the query
+    querytext = str(a)
+    # run the query
+    wiki_search_result = wikipedia.search(querytext)
+    # if there is no result:
+    if not wiki_search_result:
+        print("I apologize, but there does not seem to be any information regarding that.")
+        return
+    # search page try block
+    try:
+        page = wikipedia.page(wiki_search_result[0])
+    except wikipedia.DisambiguationError as err:
+        # grab first item on list
+        page = wikipedia.page(err.options[0])
+    # encode response utf-8
+    wikiTitle = str(page.title.encode('utf-8'))
+    wikiSummary = str(page.summary.encode('utf-8'))
+    # spit the result out prettily
+    embed = discord.Embed(title = wikiTitle[1:], color=0x00cc99)
+    embed.add_field(name="Summary:", value=wikiSummary[1:])
+    await ctx.send(embed=embed)
+    #await ctx.send(wikiSummary[1:])
+
+
 # command coinflip: tosses a coin
 @client.command()
 async def coinflip(ctx):
@@ -201,7 +228,7 @@ async def gt(ctx):
     await ctx.send("It is currently " + t + ", {}".format(ctx.author.mention))
 
 # command heresy: declare a member a heretic
-# TODO : Make this both case-insensitive and able to take a nickname 
+# TODO : Make this both case-insensitive and able to take a nickname
 @client.command(aliases=["heresy"])
 async def declareHeresy(ctx, a: discord.Member):
     member_name_string = str(a)
@@ -236,6 +263,7 @@ async def help(ctx):
     embed.add_field(name="?pythonhelp | pyhelp | ph", value="Search the Python Documentation for a string.", inline=False)
     embed.add_field(name="?cpphelp | cref | ch", value="Search cppreference for a string.", inline=False)
     embed.add_field(name="?stackoverflowhelp | stackh | sh", value="Search Stack Overflow for a string.", inline=False)
+    embed.add_field(name="?wiki", value="Search Wikipedia", inline=False)
     embed.add_field(name="?coinflip", value="Toss a coin.", inline=False)
     embed.add_field(name="?gt | gtime", value="Display the time.", inline=False)
     embed.add_field(name="?info", value="Gives info regarding this servitor's development.", inline=False)
