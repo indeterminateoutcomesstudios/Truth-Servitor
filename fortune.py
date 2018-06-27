@@ -1,5 +1,5 @@
 #Truth Servitor "Fortune" version 3.1
-#Changes - Customizable fortune directory 
+#Changes - Customizable fortune directory
 #Created by Madison Tibbett
 
 # library imports
@@ -8,6 +8,7 @@ import discord
 import requests
 import datetime as dt
 import re
+import random
 from chatterbot import ChatBot
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 

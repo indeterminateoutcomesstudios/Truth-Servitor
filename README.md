@@ -9,6 +9,7 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * requests
 * datetime
 * re
+* random
 * Chatterbot ([get it here](https://github.com/gunthercox/ChatterBot))
 
 
