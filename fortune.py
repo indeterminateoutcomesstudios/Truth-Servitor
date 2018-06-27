@@ -89,7 +89,7 @@ async def fortune(ctx):
         await ctx.send(fortune)
     # invalid file
     else:
-        await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ `*REDACTED`*...")
+        await ctx.send("What are you trying to pull, Xeno? Next you'll be asking me about ~~Squats~~ `REDACTED`...")
 
 
 
