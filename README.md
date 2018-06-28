@@ -24,7 +24,7 @@ Place your bot token into an external file called "token."
 Bot tokens may be acquired from [here](https://discordapp.com/developers/applications/me) after creating a Discord application.
 
 Place your Wolfram|Alpha API token into an external file called "wolfram_app_id."
-Wolfram|Alpha API tokens may be acquired from [here](https://account.wolfram.com/auth/sign-in) after creating a Wolfram|Alpha ID and creating a new application.
+Wolfram|Alpha API tokens may be acquired from [here](http://developer.wolframalpha.com/portal/myapps/index.html) after creating a Wolfram|Alpha ID and creating a new application.
 
 Lauch from within directory: `python fortune.py`.
 
