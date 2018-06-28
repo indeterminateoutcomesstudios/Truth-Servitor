@@ -355,6 +355,7 @@ async def help(ctx):
     embed.add_field(name="?stackoverflowhelp | stackh | sh", value="Search Stack Overflow for a string.", inline=False)
     embed.add_field(name="?wiki", value="Search Wikipedia", inline=False)
     embed.add_field(name="?wolfram | wolf | wa", value="Query Wolfram|Alpha.", inline=False)
+    embed.add_field(name="?weather <LOCATION>", value="Query OpenWeatherMap.", inline=False)
     embed.add_field(name="?coinflip", value="Toss a coin.", inline=False)
     embed.add_field(name="?gt | gtime", value="Display the time.", inline=False)
     embed.add_field(name="?info", value="Gives info regarding this servitor's development.", inline=False)

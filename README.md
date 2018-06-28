@@ -54,6 +54,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
 * ?wiki : Search Wikipedia and get the top result.
 * ?wolfram or ?wolf or ?wa : Query Wolfram|Alpha. If query fails, it gets booted to Wikipedia.
+* ?weather LOCATION : Query OpenWeatherMap for a given location.
 
 ### Features Coming Soon
 * Case insensitivity/nicknames for ?heresy command
