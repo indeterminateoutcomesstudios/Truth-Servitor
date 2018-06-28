@@ -298,24 +298,33 @@ async def declareHeresy(ctx, a: discord.Member):
 #command weather: gives the weather for a given location
 @client.command()
 async def weather(ctx, a):
+    # get the overall object from pyowm
     observation = fortuneweather.weather_at_place(a)
     w = observation.get_weather()
+    # detailed status
     w_status = w.get_detailed_status()
+    # reference time
     reftime = w.get_reference_time(timeformat='iso')
+    # wind speed & direction
     wind = w.get_wind()
     windspeed = wind.get('speed')
     winddeg = wind.get('deg')
+    # humidity
     humidity = w.get_humidity()
+    # temperature in celsius - get_temperature returns a dict() object
     ctemperature = w.get_temperature('celsius')
     ctemp = ctemperature.get('temp')
     ctemp_max = ctemperature.get('temp_max')
     ctemp_min = ctemperature.get('temp_min')
+    # temperature in fahrenheit
     ftemperature = w.get_temperature('fahrenheit')
     ftemp = ftemperature.get('temp')
     ftemp_max = ftemperature.get('temp_max')
     ftemp_min = ftemperature.get('temp_min')
+    # sunrise and sunset times
     sunrise = w.get_sunrise_time(timeformat='iso')
     sunset = w.get_sunset_time(timeformat='iso')
+    # output it all pretty-like
     embed = discord.Embed(title = "Weather for " + a, color=0x00cc99)
     embed.add_field(name="Current: ", value=w_status, inline=False)
     embed.add_field(name="Reference Time: ", value=reftime)
