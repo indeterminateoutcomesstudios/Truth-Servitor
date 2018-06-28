@@ -329,7 +329,7 @@ async def weather(ctx, a):
     embed.add_field(name="Low (F): ", value=ftemp_min)
     embed.add_field(name="High (F):", value=ftemp_max)
     embed.add_field(name="Sunrise Time: ", value=sunrise)
-    embed.add_field(name="Sunset Tiem: ", value=sunset)
+    embed.add_field(name="Sunset Time: ", value=sunset)
     await ctx.send(embed=embed)
 
 # command info: tells you about this bot
