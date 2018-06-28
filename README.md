@@ -18,7 +18,7 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 
 ### **Other Things You Need:**
 * A Discord bot token
-* A Wolfram|Alpha API token
+* A WolframAlpha API token
 * An OpenWeatherMap API token
 
 ### Usage
@@ -26,8 +26,8 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 Place your bot token into an external file called "token."
 Bot tokens may be acquired from [here](https://discordapp.com/developers/applications/me) after creating a Discord application.
 
-Place your Wolfram|Alpha API token into an external file called "wolfram_app_id."
-Wolfram|Alpha API tokens may be acquired from [here](http://developer.wolframalpha.com/portal/myapps/index.html) after creating a Wolfram|Alpha ID and creating a new application.
+Place your WolframAlpha API token into an external file called "wolfram_app_id."
+WolframAlpha API tokens may be acquired from [here](http://developer.wolframalpha.com/portal/myapps/index.html) after creating a WolframAlpha ID and creating a new application.
 
 Place your OpenWeatherMap API token into an external file called "owm_key."
 OpenWeatherMap tokens may be aquired from [here](http://openweathermap.org/).
@@ -53,7 +53,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?cpphelp or ?cref or ?ch : Search cppreference for a string and get the top result.
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
 * ?wiki : Search Wikipedia and get the top result.
-* ?wolfram or ?wolf or ?wa : Query Wolfram|Alpha. If query fails, it gets booted to Wikipedia.
+* ?wolfram or ?wolf or ?wa : Query WolframAlpha. If query fails, it gets booted to Wikipedia.
 * ?weather LOCATION : Query OpenWeatherMap for a given location.
 
 ### Features Coming Soon
