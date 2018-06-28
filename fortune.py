@@ -1,6 +1,7 @@
 #Truth Servitor "Fortune" version 4.0
 #Changes - Refined search functions
 #        - Implemented Wolfram|Alpha and Wikipedia search capability.
+#        - Implemented OpenWeatherMap Weather search capability
 #Created by Madison Tibbett
 
 # library imports
@@ -126,14 +127,18 @@ async def exterminatus(ctx):
     await ctx.send(exterminatus_msg)
 
 # dev tool | command shutdown: shuts down the bot from server
+# MUST HAVE ROLE "BOTMASTER" TO USE
 @client.command(aliases=["dev_sd"])
+@discord.ext.commands.has_role('Botmaster')
 async def shutdown(ctx):
     await ctx.send("Shutting down. Bye!")
     await client.logout()
     await client.close()
 
 # dev tool | command status: set game status of bot
+# MUST HAVE ROLE "BOTMASTER" TO USE
 @client.command()
+@discord.ext.commands.has_role('Botmaster')
 async def status(ctx):
     await client.change_presence(activity=discord.Game(name=ctx.message.content[7:]))
 

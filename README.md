@@ -42,8 +42,8 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?fortune or ?wf FILENAME: Picks a fortune from a given file. Defaults to a Warhammer quote from included 'warhammer' binary. This is very similar to Unix `fortune`
 * ?exterminatus or ?exterm or ?ex : Declares exterminatus. Edit this text to fit your server's needs.
 * ?heresy NAME : Case-sensitive. Declares a member a heretic for all to see. Must use the user's Discord username, not nickname.
-* ?shutdown : Shuts the bot down from within Discord.
-* ?status <string> : Set the in-game status of the bot.
+* ?shutdown : Shuts the bot down from within Discord. TO USE THIS COMMAND, YOU MUST HAVE THE ROLE "Botmaster."
+* ?status <string> : Set the in-game status of the bot. TO USE THIS COMMAND, YOU MUST HAVE THE ROLE "Botmaster."
 * ?joke : Tells a Chuck Norris joke. Use at own risk. They're awful.
 * ?coinflip : Tosses a coin.
 * ?gt or ?gtime : Gets current time. Based on host's system time.
