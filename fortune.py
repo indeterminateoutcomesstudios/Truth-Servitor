@@ -16,7 +16,7 @@ from chatterbot import ChatBot
 import wolframalpha
 import wikipedia
 import pyowm
-# OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 16.
+# OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 20.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # external file import
@@ -58,7 +58,7 @@ fortuneclient = wolframalpha.Client(appID)
 fortuneweather = pyowm.OWM(wappID)
 
 # set the trainer
-# OPTIONAL : Uncomment 44 and 45 to train Fortune on a basic corpus.
+# OPTIONAL : Uncomment 62 and 63 to train Fortune on a basic corpus.
 #fortunebot.set_trainer(ChatterBotCorpusTrainer)
 #fortunebot.train('chatterbot.corpus.english')
 
