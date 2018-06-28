@@ -14,6 +14,7 @@ import random
 from chatterbot import ChatBot
 import wolframalpha
 import wikipedia
+import pyowm
 # OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 16.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
@@ -30,10 +31,14 @@ with open('./token') as tf:
 with open('./wolfram_app_id') as wai:
     appID = wai.read().strip()
 
+# retrieve OpenWeatherMap API key
+with open('./owm_key') as owm:
+    wappID = owm.read().strip()
+
 # client/startup
 client = Bot(command_prefix=BOT_PREFIX)
 
-# initialize Fortune as ChatterBot
+# initialize Fortune as ChatterBot client
 fortunebot = ChatBot('Fortune',
                     storage_adapter="chatterbot.storage.SQLStorageAdapter",
                     logic_adapters=[
@@ -47,6 +52,9 @@ fortunebot = ChatBot('Fortune',
 
 # initialize Fortune as Wolfram|Alpha client
 fortuneclient = wolframalpha.Client(appID)
+
+# initialize Fortune as OpenWeatherMap client
+fortuneweather = pyowm.OWM(wappID)
 
 # set the trainer
 # OPTIONAL : Uncomment 44 and 45 to train Fortune on a basic corpus.
@@ -274,7 +282,6 @@ async def gt(ctx):
     await ctx.send("It is currently " + t + ", {}".format(ctx.author.mention))
 
 # command heresy: declare a member a heretic
-# TODO : Make this both case-insensitive and able to take a nickname
 @client.command(aliases=["heresy"])
 async def declareHeresy(ctx, a: discord.Member):
     member_name_string = str(a)
@@ -282,6 +289,43 @@ async def declareHeresy(ctx, a: discord.Member):
         await ctx.send("I am not a heretic, {}".format(ctx.author.mention))
     else:
         await ctx.send("<:heresy:313850309489459200> " + a.mention + " is a heretic. <:heresy:313850309489459200>")
+
+#command weather: gives the weather for a given location
+@client.command()
+async def weather(ctx, a):
+    observation = fortuneweather.weather_at_place(a)
+    w = observation.get_weather()
+    w_status = w.get_detailed_status()
+    reftime = w.get_reference_time(timeformat='iso')
+    wind = w.get_wind()
+    windspeed = wind.get('speed')
+    winddeg = wind.get('deg')
+    humidity = w.get_humidity()
+    ctemperature = w.get_temperature('celsius')
+    ctemp = ctemperature.get('temp')
+    ctemp_max = ctemperature.get('temp_max')
+    ctemp_min = ctemperature.get('temp_min')
+    ftemperature = w.get_temperature('fahrenheit')
+    ftemp = ftemperature.get('temp')
+    ftemp_max = ftemperature.get('temp_max')
+    ftemp_min = ftemperature.get('temp_min')
+    sunrise = w.get_sunrise_time(timeformat='iso')
+    sunset = w.get_sunset_time(timeformat='iso')
+    embed = discord.Embed(title = "Weather for " + a, color=0x00cc99)
+    embed.add_field(name="Current: ", value=w_status, inline=False)
+    embed.add_field(name="Reference Time: ", value=reftime)
+    embed.add_field(name="Wind Speed: ", value=windspeed)
+    embed.add_field(name="Wind Direction (degrees): " , value=winddeg)
+    embed.add_field(name="Humidity (%): ", value=humidity)
+    embed.add_field(name="Temperature (C): ", value=ctemp)
+    embed.add_field(name="Low (C): ", value=ctemp_min)
+    embed.add_field(name="High (C): ", value=ctemp_max)
+    embed.add_field(name="Temperature (F): ", value=ftemp, inline=False)
+    embed.add_field(name="Low (F): ", value=ftemp_min)
+    embed.add_field(name="High (F):", value=ftemp_max)
+    embed.add_field(name="Sunrise Time: ", value=sunrise)
+    embed.add_field(name="Sunset Tiem: ", value=sunset)
+    await ctx.send(embed=embed)
 
 # command info: tells you about this bot
 @client.command()

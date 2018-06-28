@@ -13,10 +13,13 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * Beautiful Soup 4 ([read all about it here](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
 * wolframalpha (`pip install wolframalpha`)
 * wikipedia (`pip install wikipedia`)
+* pyowm (`pip install pyowm`)
+
 
 ### **Other Things You Need:**
 * A Discord bot token
 * A Wolfram|Alpha API token
+* An OpenWeatherMap API token
 
 ### Usage
 
@@ -25,6 +28,9 @@ Bot tokens may be acquired from [here](https://discordapp.com/developers/applica
 
 Place your Wolfram|Alpha API token into an external file called "wolfram_app_id."
 Wolfram|Alpha API tokens may be acquired from [here](http://developer.wolframalpha.com/portal/myapps/index.html) after creating a Wolfram|Alpha ID and creating a new application.
+
+Place your OpenWeatherMap API token into an external file called "owm_key."
+OpenWeatherMap tokens may be aquired from [here](http://openweathermap.org/).
 
 Lauch from within directory: `python fortune.py`.
 
