@@ -151,7 +151,7 @@ async def pythonhelp(ctx):
         # search the site
         # the python docs site uses some javascript stuff to dynamically load search results
         # as a result BeautifulSoup threw a royal fit and I can't pin down any appropriate tags
-        await ctx.send("The top result for that search is : " + 'https://docs.python.org/3/library/' + messagetext + '.html')
+        await ctx.send("The top result for that search is: " + 'https://docs.python.org/3/library/' + messagetext + '.html')
 
 # command cpphelp: searches cppreference for help
 @client.command(aliases=["cref", "ch"])
