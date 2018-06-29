@@ -345,11 +345,11 @@ async def weather(ctx, a):
 @client.command()
 async def info(ctx):
     embed = discord.Embed(title="Truth Servitor \"Fortune\"", description="Speaks only the truth.", color=0x00cc99)
-    embed.add_field(name="Version", value="3.2")
+    embed.add_field(name="Version", value="4.0")
     embed.add_field(name="Author", value="Esherymack | Madison Tibbett")
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
     embed.add_field(name="Github", value="https://github.com/Esherymack/Truth-Servitor")
-    embed.add_field(name="Changes", value="-Fortune's fortune library can now be expanded and customized.", inline=False)
+    embed.add_field(name="Changes", value="-Wikipedia, Wolfram|Alpha, and OpenWeather implemented.", inline=False)
     await ctx.send(embed=embed)
 
 # overwrite the help command with something pretty
