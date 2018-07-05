@@ -83,10 +83,10 @@ async def on_ready():
 async def on_message(message):
     # This line prunes out the mention to the bot
     txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
+    response=fortunebot.get_response(txt)
     # This line prevents the bot from replying to itself
     if not message.author.bot and (message.guild == None or client.user in message.mentions):
         # Retrieve the response from the database & send it off
-        response=fortunebot.get_response(txt)
         await message.channel.send(response)
     # IMPORTANT : The below line is not a duplicate! This line helps Fortune exit the
     #             on_message function in order to parse commands. If you move it or
