@@ -10,7 +10,7 @@ fortunes = {}
 
 for file_name in files:
     file_path = FORTUNE_DIR + file_name
-    with open(file_path) as file:
+    with open(file_path, encoding="utf-8") as file:
         # Get list of strings using \n%\n as delimiter, filter empty ones out
         fortune_list = list(filter(lambda x: x, file.read().split('\n%\n')))
         fortunes[file_name] = fortune_list
