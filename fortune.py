@@ -305,13 +305,25 @@ async def getAlerts(ctx):
     # parse site through BeautifulSoup
     soup = BeautifulSoup(r.content, 'html5lib')
     # Narrow down to the proper class for alerts, col-md-6
-    search_result = soup.find('div', attrs={'class' : 'col-md-6'}).find('li').get('list-group-item')
-    await ctx.send(search_result)
+    embed = discord.Embed(color=0xA36EE8)
+    for s in soup.findAll('li', attrs={'class' : 'list-group-item'}):
+        for li in s.findAll('span', attrs={'class' : 'alert-node'}):
+            at = s.find('span', attrs={'class' : 'alert-type'})
+            fc = s.find('span', attrs={'class' : 'alert-fc'})
+            embed.add_field(name="Alert: " + li.text, value="Type: " + at.text + ", Faction: " + fc.text, inline=False)
+    await ctx.send(embed=embed)
 
 # command sorties: scrapes for current sorties
 @client.command(aliases=["sorties"])
 async def getSorties(ctx):
-    pass
+    scrape_site = 'https://deathsnacks.com/wf/'
+    r = requests.get(scrape_site)
+    soup = BeautifulSoup(r.content, 'html5lib')
+    embed = discord.Embed(color=0xA36EE8)
+    for s in soup.findAll('li', attrs={'class' : 'list-group-item sortievariant'}):
+        st = s.find('span', attrs={'class' : 'bold'})
+        embed.add_field(name="Sortie: " + st.text, inline=False)
+    await ctx.send(embed=embed)
 
 # command fissures: scrapes for current fissure events
 @client.command(aliases=["fissures"])
