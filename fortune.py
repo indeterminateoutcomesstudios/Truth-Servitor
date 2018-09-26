@@ -365,11 +365,11 @@ async def weather(ctx, a):
 @client.command()
 async def info(ctx):
     embed = discord.Embed(title="Truth Servitor \"Fortune\"", description="Speaks only the truth.", color=0x00cc99)
-    embed.add_field(name="Version", value="4.0")
+    embed.add_field(name="Version", value="4.1")
     embed.add_field(name="Author", value="Esherymack | Madison Tibbett")
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
     embed.add_field(name="Github", value="https://github.com/Esherymack/Truth-Servitor")
-    embed.add_field(name="Changes", value="-Wikipedia, Wolfram|Alpha, and OpenWeather implemented.", inline=False)
+    embed.add_field(name="Changes", value="- Warframe related functions added", inline=False)
     await ctx.send(embed=embed)
 
 # overwrite the help command with something pretty
@@ -390,6 +390,10 @@ async def help(ctx):
     embed.add_field(name="?wiki", value="Search Wikipedia", inline=False)
     embed.add_field(name="?wolfram | wolf | wa", value="Query Wolfram|Alpha.", inline=False)
     embed.add_field(name="?weather <LOCATION>", value="Query OpenWeatherMap.", inline=False)
+    embed.add_field(name="?alerts", value="Fetch current alerts on Warframe.", inline=False)
+    embed.add_field(name="?sorties", value="Fetch current sorties on Warframe.", inline=False)
+    embed.add_field(name="?fissures", value="Fetch current fissure events on Warframe.", inline=False)
+    embed.add_field(name="?cycle", value="Fetch current day/night status of Earth.", inline=False)
     embed.add_field(name="?coinflip", value="Toss a coin.", inline=False)
     embed.add_field(name="?gt | gtime", value="Display the time.", inline=False)
     embed.add_field(name="?info", value="Gives info regarding this servitor's development.", inline=False)
