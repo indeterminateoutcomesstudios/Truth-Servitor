@@ -16,7 +16,7 @@ from chatterbot import ChatBot
 import wolframalpha
 import wikipedia
 import pyowm
-# OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 20.
+# OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 20 as well as 62 and 63.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
 # external file import
@@ -294,6 +294,26 @@ async def declareHeresy(ctx, a: discord.Member):
         await ctx.send("I am not a heretic, {}".format(ctx.author.mention))
     else:
         await ctx.send("<:heresy:313850309489459200> " + a.mention + " is a heretic. <:heresy:313850309489459200>")
+
+# command alerts: scrapes for current warframe alerts
+@client.command(aliases=["alerts"])
+async def getAlerts(ctx):
+    pass
+
+# command sorties: scrapes for current sorties
+@client.command(aliases=["sorties"])
+async def getSorties(ctx):
+    pass
+
+# command fissures: scrapes for current fissure events
+@client.command(aliases=["fissures"])
+async def getFissures(ctx):
+    pass
+
+# command cycle: scrapes for current day/night status of Earth
+@client.command(aliases=["cycle"])
+async def getCycle(ctx):
+    pass
 
 #command weather: gives the weather for a given location
 @client.command()
