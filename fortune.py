@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import datetime as dt
 import re
 import random
-from chatterbot import ChatBot
+#from chatterbot import ChatBot
 import wolframalpha
 import wikipedia
 import pyowm
@@ -40,16 +40,16 @@ with open('./owm_key') as owm:
 client = Bot(command_prefix=BOT_PREFIX)
 
 # initialize Fortune as ChatterBot client
-fortunebot = ChatBot('Fortune',
-                    storage_adapter="chatterbot.storage.SQLStorageAdapter",
-                    logic_adapters=[
-                        "chatterbot.logic.MathematicalEvaluation",
-                        "chatterbot.logic.BestMatch",
-                        "chatterbot.logic.LowConfidenceAdapter"
-                    ],
-                    input_adapter="chatterbot.input.VariableInputTypeAdapter",
-                    output_adapter="chatterbot.output.OutputAdapter",
-                    )
+#fortunebot = ChatBot('Fortune',
+#                    storage_adapter="chatterbot.storage.SQLStorageAdapter",
+#                    logic_adapters=[
+#                        "chatterbot.logic.MathematicalEvaluation",
+#                        "chatterbot.logic.BestMatch",
+#                        "chatterbot.logic.LowConfidenceAdapter"
+#                    ],
+#                    input_adapter="chatterbot.input.VariableInputTypeAdapter",
+#                    output_adapter="chatterbot.output.OutputAdapter",
+#                    )
 
 # initialize Fortune as Wolfram|Alpha client
 fortuneclient = wolframalpha.Client(appID)
@@ -79,19 +79,19 @@ async def on_ready():
     print("----------")
 
 ## implementation of ChatterBot machine-learning chatbot.
-@client.event
-async def on_message(message):
+#@client.event
+#async def on_message(message):
     # This line prunes out the mention to the bot
-    txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
-    response=fortunebot.get_response(txt)
+#    txt = message.content.replace(message.guild.me.mention,'') if message.guild else message.content
+#    response=fortunebot.get_response(txt)
     # This line prevents the bot from replying to itself
-    if not message.author.bot and (message.guild == None or client.user in message.mentions):
+#    if not message.author.bot and (message.guild == None or client.user in message.mentions):
         # Retrieve the response from the database & send it off
-        await message.channel.send(response)
+#        await message.channel.send(response)
     # IMPORTANT : The below line is not a duplicate! This line helps Fortune exit the
     #             on_message function in order to parse commands. If you move it or
     #             delete it, the client commands may not work!
-    await client.process_commands(message)
+#    await client.process_commands(message)
 
 # command fortune: pick a random fortune from the specified file in the fortunes dir, or default to
 # warhammer if none specified
@@ -178,7 +178,7 @@ async def cpphelp(ctx):
         # fetch the site
         r = requests.get(cpp_search)
         # parse the site through BeautifulSoup
-        soup = BeautifulSoup(r.content, 'html.parser')
+        soup = BeautifulSoup(r.content, 'html5lib')
         # Narrow down to the div class mw-search-result-heading, grab the first <a href="">
         search_result = soup.find('div', attrs={'class' : 'mw-search-result-heading'}).find('a').get('href')
         # Append the <a href=""> to the appropriate URL
@@ -197,7 +197,7 @@ async def stackoverflowhelp(ctx):
         messagetext = split[1]
         so_search = 'https://stackoverflow.com/search?q=' + messagetext
         r = requests.get(so_search)
-        soup = BeautifulSoup(r.content, 'html.parser')
+        soup = BeautifulSoup(r.content, 'html5lib')
         search_result = soup.find('div', attrs={'class' : 'summary'}).find('a', attrs={'class' : 'question-hyperlink'}).get('href')
         so_result = 'https://stackoverflow.com/' + search_result
         await ctx.send("The top result for that search is: " + so_result)
@@ -298,7 +298,15 @@ async def declareHeresy(ctx, a: discord.Member):
 # command alerts: scrapes for current warframe alerts
 @client.command(aliases=["alerts"])
 async def getAlerts(ctx):
-    pass
+    # https://deathsnacks.com/wf/ is the site these values get scraped from.
+    scrape_site = 'https://deathsnacks.com/wf/'
+    # fetch the site
+    r = requests.get(scrape_site)
+    # parse site through BeautifulSoup
+    soup = BeautifulSoup(r.content, 'html5lib')
+    # Narrow down to the proper class for alerts, col-md-6
+    search_result = soup.find('div', attrs={'class' : 'col-md-6'}).find('li').get('list-group-item')
+    await ctx.send(search_result)
 
 # command sorties: scrapes for current sorties
 @client.command(aliases=["sorties"])
@@ -369,7 +377,7 @@ async def info(ctx):
     embed.add_field(name="Author", value="Esherymack | Madison Tibbett")
     embed.add_field(name="Server count", value=f"{len(client.guilds)}")
     embed.add_field(name="Github", value="https://github.com/Esherymack/Truth-Servitor")
-    embed.add_field(name="Changes", value="- Warframe related functions added", inline=False)
+    embed.add_field(name="Changes", value="- Warframe related functions added, removed chat capability", inline=False)
     await ctx.send(embed=embed)
 
 # overwrite the help command with something pretty
@@ -377,7 +385,6 @@ client.remove_command('help')
 @client.command()
 async def help(ctx):
     embed = discord.Embed(title="Truth Servitor", description = "Speaks only the truth. Accepted intonations are:", color=0x00cc99)
-    embed.add_field(name="@Fortune", value="Mention the Truth Servitor directly to talk to him.", inline=False)
     embed.add_field(name="?fortune | wf <FILE>", value="Gives daily wisdom.", inline=False)
     embed.add_field(name="?exterminatus | exterm | ex", value="Declares exterminatus.", inline=False)
     embed.add_field(name="?heresy <NAME>", value="Declares a member a heretic.", inline=False)
