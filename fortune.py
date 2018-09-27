@@ -1,7 +1,6 @@
-#Truth Servitor "Fortune" version 4.0
-#Changes - Refined search functions
-#        - Implemented Wolfram|Alpha and Wikipedia search capability.
-#        - Implemented OpenWeatherMap Weather search capability
+#Truth Servitor "Fortune" version 4.1
+#Changes - Removed chat functionality.
+#        - Added Warframe queries for alerts, fissures, sorties, etc.
 #Created by Madison Tibbett
 
 # library imports
