@@ -1,6 +1,6 @@
 # Truth Servitor/"Fortune" - memey warhammer discord bot - python 3
 
-Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord chatbot. He is written in Python 3.
+Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord bot. He is written in Python 3.
 
 ### **Required Libraries:**
 * os
@@ -9,7 +9,6 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * datetime
 * re
 * random
-* Chatterbot ([get it here](https://github.com/gunthercox/ChatterBot))
 * Beautiful Soup 4 ([read all about it here](https://www.crummy.com/software/BeautifulSoup/bs4/doc/))
 * wolframalpha (`pip install wolframalpha`)
 * wikipedia (`pip install wikipedia`)
