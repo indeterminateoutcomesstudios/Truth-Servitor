@@ -4,3 +4,4 @@ token
 *.sqlite3
 wolfram_app_id
 owm_key
+ghostdriver.log
