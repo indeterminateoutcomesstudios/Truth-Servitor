@@ -14,7 +14,7 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * wolframalpha (`pip install wolframalpha`)
 * wikipedia (`pip install wikipedia`)
 * pyowm (`pip install pyowm`)
-* selenium
+* selenium (`pip install selenium`)
 
 ### **Other Things You Need:**
 * A Discord bot token
@@ -34,15 +34,14 @@ Place your OpenWeatherMap API token into an external file called "owm_key."
 OpenWeatherMap tokens may be aquired from [here](http://openweathermap.org/).
 
 Place the filepath to PhantomJS on line 328. It should read something to the effect:
+
 `driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')`
 
 Lauch from within directory: `python fortune.py`.
 
-On first launch, a Sqlite file called `db.sqlite3` will be generated. This is the bot's "brain." It will record any and all conversation held in Discord.
-
 #### Current Functions
 
-* Mentioning Fortune in chat will directly speak to him. This functions through Chatterbot. The bot will not speak when not mentioned, but will pick up and "learn" all conversation around him.
+* Mentioning Fortune in chat will directly speak to him. This functions through Chatterbot. The bot will not speak when not mentioned, but will pick up and "learn" all conversation around him. **THIS FEATURE HAS BEEN REMOVED. THE ORIGINAL CODE IS STILL PRESENT, BUT COMMENTED OUT. THIS IS ONLY FOR REFERENCE.**
 * ?fortune or ?wf FILENAME: Picks a fortune from a given file. Defaults to a Warhammer quote from included 'warhammer' binary. This is very similar to Unix `fortune`
 * ?exterminatus or ?exterm or ?ex : Declares exterminatus. Edit this text to fit your server's needs.
 * ?heresy NAME : Case-sensitive. Declares a member a heretic for all to see. Must use the user's Discord username, not nickname.
@@ -56,6 +55,7 @@ On first launch, a Sqlite file called `db.sqlite3` will be generated. This is th
 * ?pythonhelp or ?pyhelp or ?ph : Search the Python 3 docs for a string.
 * ?cpphelp or ?cref or ?ch : Search cppreference for a string and get the top result.
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
+* ?alerts : Fetches current alerts for the game Warframe.
 * ?wiki : Search Wikipedia and get the top result.
 * ?wolfram or ?wolf or ?wa : Query WolframAlpha. If query fails, it gets booted to Wikipedia.
 * ?weather LOCATION : Query OpenWeatherMap for a given location.
