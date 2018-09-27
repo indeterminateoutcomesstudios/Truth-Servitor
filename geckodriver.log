@@ -1,0 +1,100 @@
+1538011739472	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Madison\\AppData\\Local\\Temp\\rust_mozprofile.5yUGhr62TD9W"
+1538011742002	Marionette	INFO	Listening on port 61358
+1538011742193	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538011742225	Marionette	DEBUG	[6442450945] Frame script loaded
+1538011742226	Marionette	DEBUG	[6442450945] Frame script registered
+1538011742245	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538011742579	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+JavaScript warning: https://deathsnacks.com/wf/index.js?v=130, line 65: unreachable code after return statement
+1538011742941	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://deathsnacks.com/wf/
+[Child 20736, MediaPlayback #2] WARNING: Decoder=1ff38447400 state=DECODING_METADATA Decode metadata failed, shutting down decoder: file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 372
+[Child 20736, MediaPlayback #2] WARNING: Decoder=1ff38447400 Decode error: NS_ERROR_DOM_MEDIA_METADATA_ERR (0x806e0006): file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+1538011743427	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://deathsnacks.com/wf/
+[Parent 10896, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20736, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20736, Chrome_ChildThread] WARNING:[Child 20612, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20612, Chrome_C[Child 2424, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 2424, Chrome_Child1538011762906	Marionette	INFO	Stopped listening on port 61358
+[GPU 19988, Chrome_C
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538012146211	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Madison\\AppData\\Local\\Temp\\rust_mozprofile.4QtUBxWGJSCO"
+1538012148248	Marionette	INFO	Listening on port 63558
+1538012148329	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538012148366	Marionette	DEBUG	[6442450945] Frame script loaded
+1538012148390	Marionette	DEBUG	[6442450945] Frame script registered
+1538012148425	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538012148749	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+JavaScript warning: https://deathsnacks.com/wf/index.js?v=130, line 65: unreachable code after return statement
+1538012149152	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://deathsnacks.com/wf/
+[Child 19612, MediaPlayback #2] WARNING: Decoder=18b0de86400 state=DECODING_METADATA Decode metadata failed, shutting down decoder: file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 372
+[Child 19612, MediaPlayback #2] WARNING: Decoder=18b0de86400 Decode error: NS_ERROR_DOM_MEDIA_METADATA_ERR (0x806e0006): file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+1538012149963	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://deathsnacks.com/wf/
+1538012189128	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Madison\\AppData\\Local\\Temp\\rust_mozprofile.IQo8gR2Mm676"
+1538012190973	Marionette	INFO	Listening on port 63828
+1538012191604	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538012191650	Marionette	DEBUG	[6442450945] Frame script loaded
+1538012191651	Marionette	DEBUG	[6442450945] Frame script registered
+1538012191676	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538012191948	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+JavaScript warning: https://deathsnacks.com/wf/index.js?v=130, line 65: unreachable code after return statement
+1538012192281	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://deathsnacks.com/wf/
+[Child 19660, MediaPlayback #2] WARNING: Decoder=1d104a68000 state=DECODING_METADATA Decode metadata failed, shutting down decoder: file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 372
+[Child 19660, MediaPlayback #2] WARNING: Decoder=1d104a68000 Decode error: NS_ERROR_DOM_MEDIA_METADATA_ERR (0x806e0006): file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+1538012192903	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://deathsnacks.com/wf/
+[Child 19928, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 19[9C2hild 19660, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 19660, Chrome_ChildThread] WARN[Child 18600, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 18600, Chrome_Chil1538012222925	Marionette	INFO	Stopped listening on port 63828
+[GPU 3660, Chrome_
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538012239470	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Madison\\AppData\\Local\\Temp\\rust_mozprofile.Lc2tN86kTiG7"
+1538012241330	Marionette	INFO	Listening on port 64142
+1538012241590	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538012241644	Marionette	DEBUG	[6442450945] Frame script loaded
+1538012241654	Marionette	DEBUG	[6442450945] Frame script registered
+1538012241674	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538012241973	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+JavaScript warning: https://deathsnacks.com/wf/index.js?v=130, line 65: unreachable code after return statement
+1538012242266	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://deathsnacks.com/wf/
+[Child 22180, MediaPlayback #2] WARNING: Decoder=230e52f2800 state=DECODING_METADATA Decode metadata failed, shutting down decoder: file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 372
+[Child 22180, MediaPlayback #2] WARNING: Decoder=230e52f2800 Decode error: NS_ERROR_DOM_MEDIA_METADATA_ERR (0x806e0006): file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+1538012242994	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://deathsnacks.com/wf/
+[Parent 22496, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 22496, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22180, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22180, Chrome_ChildT[hChild 21372, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21372, Chrome_[Child 22044, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22044, Chrome_Chi1538012372413	Marionette	INFO	Stopped listening on port 64142
+[GPU 21648, Chrome_Chi
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1538012378699	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\Madison\\AppData\\Local\\Temp\\rust_mozprofile.k6Lgdmz2tOIP"
+1538012380274	Marionette	INFO	Listening on port 64916
+1538012380328	Marionette	WARN	TLS certificate errors will be ignored for this session
+1538012380355	Marionette	DEBUG	[6442450945] Frame script loaded
+1538012380357	Marionette	DEBUG	[6442450945] Frame script registered
+1538012380393	Marionette	DEBUG	[6442450945] Received DOM event beforeunload for about:blank
+1538012380683	Marionette	DEBUG	[6442450945] Received DOM event pagehide for about:blank
+JavaScript warning: https://deathsnacks.com/wf/index.js?v=130, line 65: unreachable code after return statement
+1538012380961	Marionette	DEBUG	[6442450945] Received DOM event DOMContentLoaded for https://deathsnacks.com/wf/
+[Child 22412, MediaPlayback #2] WARNING: Decoder=25027936400 state=DECODING_METADATA Decode metadata failed, shutting down decoder: file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 372
+[Child 22412, MediaPlayback #2] WARNING: Decoder=25027936400 Decode error: NS_ERROR_DOM_MEDIA_METADATA_ERR (0x806e0006): file z:/build/build/src/dom/media/MediaDecoderStateMachine.cpp, line 3429
+1538012381660	Marionette	DEBUG	[6442450945] Received DOM event pageshow for https://deathsnacks.com/wf/
+1538012417400	Marionette	DEBUG	[2147483652] Frame script loaded
+1538012417407	Marionette	DEBUG	[2147483652] Frame script registered
+[Parent 21744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22412, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22412, Chrome_ChildThread] WARNING:1538012417429	Marionette	DEBUG	[2147483654] Frame script loaded
+1538012417430	Marionette	DEBUG	[2147483654] Frame script registered
+1538012418693	Marionette	DEBUG	[2147483658] Frame script loaded
+1538012418693	Marionette	DEBUG	[2147483658] Frame script registered
+1538012419650	Marionette	DEBUG	[2147483661] Frame script loaded
+1538012419650	Marionette	DEBUG	[2147483661] Frame script registered
+[Child 22360, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22360, Chrome_ChildThread] WARNING:[Child 20860, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 20860, Chrom1538012431144	Marionette	INFO	Stopped listening on port 64916
+[GPU 22260, Chrome_
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

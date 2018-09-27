@@ -9,6 +9,8 @@ from discord.ext.commands import Bot
 import discord
 import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import datetime as dt
 import re
 import random
@@ -16,6 +18,7 @@ import random
 import wolframalpha
 import wikipedia
 import pyowm
+import time
 # OPTIONAL : If you're going to train Fortune on the basic corpus, uncomment 20 as well as 62 and 63.
 #from chatterbot.trainers import ChatterBotCorpusTrainer
 
@@ -310,19 +313,34 @@ async def getAlerts(ctx):
         for li in s.findAll('span', attrs={'class' : 'alert-node'}):
             at = s.find('span', attrs={'class' : 'alert-type'})
             fc = s.find('span', attrs={'class' : 'alert-fc'})
-            embed.add_field(name="Alert: " + li.text, value="Type: " + at.text + ", Faction: " + fc.text, inline=False)
+            rw = s.findAll('span', attrs={'class' : ['badge', 'alert2']})
+            # thanks matt
+            reward = ", ".join(list(map(lambda x: x.text, rw[1:])))
+            embed.add_field(name="Alert: " + li.text, value="Type: " + at.text + ", Faction: " + fc.text + ", Rewards: " + reward, inline=False)
     await ctx.send(embed=embed)
 
 # command sorties: scrapes for current sorties
 @client.command(aliases=["sorties"])
 async def getSorties(ctx):
     scrape_site = 'https://deathsnacks.com/wf/'
-    r = requests.get(scrape_site)
-    soup = BeautifulSoup(r.content, 'html5lib')
+
+    driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')
+    driver.implicitly_wait(30)
+    driver.get(scrape_site)
+
+    soup = BeautifulSoup(driver.page_source, 'html5lib')
     embed = discord.Embed(color=0xA36EE8)
-    for s in soup.findAll('li', attrs={'class' : 'list-group-item sortievariant'}):
-        st = s.find('span', attrs={'class' : 'bold'})
-        embed.add_field(name="Sortie: " + st.text, inline=False)
+
+    unwanted = soup.find('span', attrs={'class' : 'sortietime'})
+    unwanted.extract()
+
+    for s in soup.findAll('div', attrs={'class' : 'col-md-6'}):
+        for li in s.findAll('ul', attrs={'class' : 'list-group'}):
+            for ul in li.findAll('li', attrs={'class' : 'sortievariant'}):
+                for sp in ul.findAll('span'):
+
+                    # embed.add_field(name="Sortie: ", value= sp.text, inline=False)
+                    print(sp)
     await ctx.send(embed=embed)
 
 # command fissures: scrapes for current fissure events

@@ -1,0 +1,15 @@
+[INFO  - 2018-09-27T01:43:51.947Z] GhostDriver - Main - running on port 49898
+[INFO  - 2018-09-27T01:43:56.451Z] Session [cc0ed5c0-c1f6-11e8-8dbb-7717ce37cf02] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2018-09-27T01:43:56.451Z] Session [cc0ed5c0-c1f6-11e8-8dbb-7717ce37cf02] - page.customHeaders:  - {}
+[INFO  - 2018-09-27T01:43:56.451Z] Session [cc0ed5c0-c1f6-11e8-8dbb-7717ce37cf02] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2018-09-27T01:43:56.451Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: cc0ed5c0-c1f6-11e8-8dbb-7717ce37cf02
+[ERROR - 2018-09-27T01:43:56.900Z] Session [cc0ed5c0-c1f6-11e8-8dbb-7717ce37cf02] - page.onError - msg: TypeError: undefined is not an object (evaluating '_detectBrowser2.default.version')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2018-09-27T01:43:56.900Z] Session [cc0ed5c0-c1f6-11e8-8dbb-7717ce37cf02] - page.onError - stack:
+  (anonymous function) (https://deathsnacks.com/cdn-cgi/apps/body/QL7oWidOPw0IyztPtkeK9XSBNHU.js:6)
+  (anonymous function) (https://deathsnacks.com/cdn-cgi/apps/body/QL7oWidOPw0IyztPtkeK9XSBNHU.js:9)
+  __webpack_require__ (https://deathsnacks.com/cdn-cgi/apps/body/QL7oWidOPw0IyztPtkeK9XSBNHU.js:2)
+  (anonymous function) (https://deathsnacks.com/cdn-cgi/apps/body/QL7oWidOPw0IyztPtkeK9XSBNHU.js:3)
+
+  phantomjs://platform/console++.js:263 in error

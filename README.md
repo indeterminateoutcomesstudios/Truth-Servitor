@@ -14,12 +14,13 @@ Truth-Servitor (properly named "Fortune") is a loosely Warhammer themed Discord 
 * wolframalpha (`pip install wolframalpha`)
 * wikipedia (`pip install wikipedia`)
 * pyowm (`pip install pyowm`)
-
+* selenium
 
 ### **Other Things You Need:**
 * A Discord bot token
 * A WolframAlpha API token
 * An OpenWeatherMap API token
+* PhantomJS ([get it here](http://phantomjs.org/download.html))
 
 ### Usage
 
@@ -31,6 +32,9 @@ WolframAlpha API tokens may be acquired from [here](http://developer.wolframalph
 
 Place your OpenWeatherMap API token into an external file called "owm_key."
 OpenWeatherMap tokens may be aquired from [here](http://openweathermap.org/).
+
+Place the filepath to PhantomJS on line 328. It should read something to the effect:
+`driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')`
 
 Lauch from within directory: `python fortune.py`.
 
