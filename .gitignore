@@ -5,3 +5,4 @@ token
 wolfram_app_id
 owm_key
 ghostdriver.log
+*.log
