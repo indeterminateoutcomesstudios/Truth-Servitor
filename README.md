@@ -36,6 +36,8 @@ Place the filepath to PhantomJS on line 328. It should read something to the eff
 
 `driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')`
 
+**When you query Fortune with anything that involves Selenium, the command line will complain at you that PhantomJS support is deprecated. The only reason I still used it is so that you don't have random Firefox windows popping up when someone uses one of the commands. It's a little hacky, but it is simple and it works.**
+
 Lauch from within directory: `python fortune.py`.
 
 #### Current Functions
@@ -55,6 +57,7 @@ Lauch from within directory: `python fortune.py`.
 * ?cpphelp or ?cref or ?ch : Search cppreference for a string and get the top result.
 * ?stackoverflowhelp or ?stackh or ?sh : Search Stack Overflow for a string and get the top result.
 * ?alerts : Fetches current alerts for the game Warframe.
+* ?sorties : Fetches current sortie list for the day on the game Warframe.
 * ?wiki : Search Wikipedia and get the top result.
 * ?wolfram or ?wolf or ?wa : Query WolframAlpha. If query fails, it gets booted to Wikipedia.
 * ?weather LOCATION : Query OpenWeatherMap for a given location.

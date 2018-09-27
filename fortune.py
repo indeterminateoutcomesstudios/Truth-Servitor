@@ -325,7 +325,7 @@ async def getSorties(ctx):
     scrape_site = 'https://deathsnacks.com/wf/'
 
     driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(10)
     driver.get(scrape_site)
 
     soup = BeautifulSoup(driver.page_source, 'html5lib')
@@ -334,13 +334,21 @@ async def getSorties(ctx):
     unwanted = soup.find('span', attrs={'class' : 'sortietime'})
     unwanted.extract()
 
+    targets = []
+
     for s in soup.findAll('div', attrs={'class' : 'col-md-6'}):
         for li in s.findAll('ul', attrs={'class' : 'list-group'}):
             for ul in li.findAll('li', attrs={'class' : 'sortievariant'}):
                 for sp in ul.findAll('span'):
+                    targets.append(sp.text)
 
-                    # embed.add_field(name="Sortie: ", value= sp.text, inline=False)
-                    print(sp)
+    targets=[x for x in targets if x]
+    sortie_list_1 = ", ".join(list(map(lambda x: x, targets[0:3])))
+    sortie_list_2 = ", ".join(list(map(lambda x: x, targets[4:7])))
+    sortie_list_3 = ", ".join(list(map(lambda x: x, targets[8:11])))
+    embed.add_field(name="Sortie 1: ", value=sortie_list_1, inline=False)
+    embed.add_field(name="Sortie 2: ", value=sortie_list_2, inline=False)
+    embed.add_field(name="Sortie 3: ", value=sortie_list_3, inline=False)
     await ctx.send(embed=embed)
 
 # command fissures: scrapes for current fissure events
@@ -428,7 +436,7 @@ async def help(ctx):
     embed.add_field(name="?wolfram | wolf | wa", value="Query Wolfram|Alpha.", inline=False)
     embed.add_field(name="?weather <LOCATION>", value="Query OpenWeatherMap.", inline=False)
     embed.add_field(name="?alerts", value="Fetch current alerts on Warframe.", inline=False)
-    embed.add_field(name="?sorties", value="Fetch current sorties on Warframe.", inline=False)
+    embed.add_field(name="?sorties", value="Fetch current sorties on Warframe. Kind of slow.", inline=False)
     embed.add_field(name="?fissures", value="Fetch current fissure events on Warframe.", inline=False)
     embed.add_field(name="?cycle", value="Fetch current day/night status of Earth.", inline=False)
     embed.add_field(name="?coinflip", value="Toss a coin.", inline=False)
