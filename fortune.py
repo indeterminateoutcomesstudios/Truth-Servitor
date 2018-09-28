@@ -360,6 +360,10 @@ async def getFissures(ctx):
 async def getCycle(ctx):
     pass
 
+@client.command(aliases=["inv", "invasions"])
+async def getInvasions(ctx):
+    pass
+
 #command weather: gives the weather for a given location
 @client.command()
 async def weather(ctx, a):
