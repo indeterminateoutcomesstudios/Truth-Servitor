@@ -166,7 +166,7 @@ async def pythonhelp(ctx):
         # search the site
         # the python docs site uses some javascript stuff to dynamically load search results
         # as a result BeautifulSoup threw a royal fit and I can't pin down any appropriate tags
-        await ctx.send("The top result for that search is: " + 'https://docs.python.org/3/library/' + messagetext + '.html')
+        await ctx.send(f"The top result for that search is: https://docs.python.org/3/library/{messagetext}.html")
 
 # command cpphelp: searches cppreference for help
 @client.command(aliases=["cref", "ch"])
@@ -176,7 +176,7 @@ async def cpphelp(ctx):
     if len(split) > 1:
         messagetext = split[1]
         # create the search query
-        cpp_search = 'http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=' + messagetext
+        cpp_search = f'http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search={messagetext}'
         # fetch the site
         r = requests.get(cpp_search)
         # parse the site through BeautifulSoup
@@ -184,9 +184,9 @@ async def cpphelp(ctx):
         # Narrow down to the div class mw-search-result-heading, grab the first <a href="">
         search_result = soup.find('div', attrs={'class' : 'mw-search-result-heading'}).find('a').get('href')
         # Append the <a href=""> to the appropriate URL
-        cpp_result = 'https://en.cppreference.com' + search_result
+        cpp_result = f'https://en.cppreference.com/{search_result}'
         # Return the query
-        await ctx.send("The top result for that search is: " + cpp_result)
+        await ctx.send(f"The top result for that search is: {cpp_result}")
 
 # command stackoverflowhelp: searches stackoverflow for help
 # This function is more or less the same as the cppreference one
@@ -197,12 +197,12 @@ async def stackoverflowhelp(ctx):
     split = messagetext.split(' ')
     if len(split) > 1:
         messagetext = split[1]
-        so_search = 'https://stackoverflow.com/search?q=' + messagetext
+        so_search = f'https://stackoverflow.com/search?q={messagetext}'
         r = requests.get(so_search)
         soup = BeautifulSoup(r.content, 'html5lib')
         search_result = soup.find('div', attrs={'class' : 'summary'}).find('a', attrs={'class' : 'question-hyperlink'}).get('href')
-        so_result = 'https://stackoverflow.com/' + search_result
-        await ctx.send("The top result for that search is: " + so_result)
+        so_result = f'https://stackoverflow.com/{search_result}'
+        await ctx.send(f"The top result for that search is: {so_result}")
 
 # The Wikipedia and Wolfram|Alpha commands are based off of this:
 # https://medium.com/@salisuwy/build-an-ai-assistant-with-wolfram-alpha-and-wikipedia-in-python-d9bc8ac838fe
@@ -286,16 +286,16 @@ async def coinflip(ctx):
 async def gt(ctx):
     t = dt.datetime.now().time()
     t = t.strftime('%H:%M:%S')
-    await ctx.send("It is currently " + t + ", {}".format(ctx.author.mention))
+    await ctx.send(f"It is currently {t} on the server, {ctx.author.mention}")
 
 # command heresy: declare a member a heretic
 @client.command(aliases=["heresy"])
 async def declareHeresy(ctx, a: discord.Member):
     member_name_string = str(a)
     if(re.match("Fortune", member_name_string)):
-        await ctx.send("I am not a heretic, {}".format(ctx.author.mention))
+        await ctx.send(f"I am not a heretic, {ctx.author.mention}")
     else:
-        await ctx.send("<:heresy:313850309489459200> " + a.mention + " is a heretic. <:heresy:313850309489459200>")
+        await ctx.send(f"<:heresy:313850309489459200> {a.mention} is a heretic. <:heresy:313850309489459200>")
 
 # command alerts: scrapes for current warframe alerts
 @client.command(aliases=["alerts"])
