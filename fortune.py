@@ -323,9 +323,19 @@ async def getAlerts(ctx):
 async def getSorties(ctx):
     scrape_site = 'https://deathsnacks.com/wf/'
 
-    driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')
+    ## set phantomJS webdriver in selenium - using this even though it's deprecated, because I don't want random
+    ## firefox/chrome windows popping up whenever someone queries my boy here for sorties
+
+    ## windows PATH for PhantomJS
+    ## driver = webdriver.PhantomJS(executable_path=r'C:\Users\Madison\Downloads\phantomjs-2.1.1-windows\phantomjs-2.1.1-windows\bin\phantomjs.exe')
+
+    ## linux PATH for PhantomJS
+    driver = webdriver.PhantomJS(executable_path=r'/home/madison/Documents/Programs/Truth-Servitor/phantomjs-2.1.1-linux-x86_64/bin/phantomjs')
     driver.implicitly_wait(10)
     driver.get(scrape_site)
+
+    # for some fucking reason, deathsnacks uses javascript to update the sorties, but not the alerts
+    # this doesn't make sense to me, since sorties last 24 hours and alerts last like 45 minutes max
 
     soup = BeautifulSoup(driver.page_source, 'html5lib')
     embed = discord.Embed(color=0xA36EE8)
@@ -334,6 +344,8 @@ async def getSorties(ctx):
     unwanted.extract()
 
     targets = []
+
+    # this can mess up sometimes - if it spits out a blank, rerun the command
 
     for s in soup.findAll('div', attrs={'class' : 'col-md-6'}):
         for li in s.findAll('ul', attrs={'class' : 'list-group'}):
