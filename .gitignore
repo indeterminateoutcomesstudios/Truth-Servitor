@@ -6,3 +6,4 @@ wolfram_app_id
 owm_key
 ghostdriver.log
 *.log
+phantomjs-2.1.1-linux-x86_64/*
